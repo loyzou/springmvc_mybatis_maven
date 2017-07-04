@@ -1,0 +1,15 @@
+com\sufow\service\impl\GoodsServiceImpl.class
+com\sufow\service\impl\DecadeService.class
+com\sufow\service\UserService.class
+com\sufow\dao\impl\UserDaoImpl.class
+com\sufow\service\GoodsService.class
+com\sufow\action\BaseAction.class
+com\sufow\dao\impl\DecadeDao.class
+com\sufow\comm\CommResult.class
+com\sufow\action\LoginAction.class
+com\sufow\dao\GoodsDao.class
+com\sufow\dao\UserDao.class
+com\sufow\comm\CommParam.class
+com\sufow\action\GoodsAction.class
+com\sufow\service\impl\UserServiceImpl.class
+com\sufow\dao\impl\GoodsDaoImpl.class

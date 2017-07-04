@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="GOODSRECORD">
+		<!-- 查询商品操作记录列表 -->
+		<select id="queryGoodsRecordList" parameterType="map" resultType="map">
+			select t.recordId,DATE_FORMAT(t.operTime,'%Y-%m-%d') as operTime ,t.operName,t.operType,t.remark,t.num,t1.goodsName,t2.typeName from t_goods_record t 
+			left join t_goods t1 on t1.goodsId = t.goodsId
+			left join t_goods_type t2 on t2.typeId = t1.typeId
+			<where>
+				<if test="goodsName !=null and goodsName !=''" >
+					t1.goodsName =#{goodsName}
+				</if>
+				<if test="operName !=null and operName !=''" >
+					and t .operName =#{operName}
+				</if>
+				<if test="operTime !=null and operTime !=''" >
+					and t.operTime =#{operTime}
+				</if>
+			</where>
+			order by t.operTime DESC
+		</select>
+		
+		<!-- 添加商品记录 -->
+		<insert id="addGoodsRecord" parameterType="map">
+			<selectKey resultType="java.lang.Short" order="AFTER" keyProperty="id">
+					SELECT LAST_INSERT_ID() AS id
+			</selectKey>
+			insert into t_goods_record (goodsId, num,operName,operType,remark,operTime
+			)
+			values (#{goodsId,jdbcType=BIGINT},
+			#{num,jdbcType=VARCHAR},
+			#{operName,jdbcType=INTEGER},
+			#{operType,jdbcType=VARCHAR},
+			#{remark,jdbcType=VARCHAR},
+			#{operTime,jdbcType=VARCHAR}
+			)
+					
+		</insert>
+</mapper>
